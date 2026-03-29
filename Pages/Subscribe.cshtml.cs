@@ -27,7 +27,7 @@ public class SubscribeModel : PageModel
             return RedirectToPage("/Index");
         }
 
-        //await _emailService.SendSubscriptionConfirmationAsync(Email);
+        await _emailService.SendSubscriptionConfirmationAsync(Email);
         TempData["SubscribeSuccess"] = "Check your inbox to confirm subscription!";
         return RedirectToPage("/Index");
     }
