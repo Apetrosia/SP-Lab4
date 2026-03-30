@@ -7,7 +7,6 @@ builder.Services.AddRazorPages();
 builder.Services.AddScoped<ICsvService, CsvService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 
-// Настройки SMTP из appsettings.json
 builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
 
 var app = builder.Build();
@@ -24,7 +23,7 @@ app.UseMiddleware<HttpRequestLogger>();
 app.UseRouting();
 app.UseAuthorization();
 
-app.UseStatusCodePagesWithReExecute("/NotFound");
+app.UseStatusCodePagesWithRedirects("/NotFound");
 app.MapRazorPages();
 
 app.Run();
