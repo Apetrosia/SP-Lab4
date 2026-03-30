@@ -44,15 +44,13 @@ public class ContactModel : PageModel
             return Page();
         }
 
-        // Сохраняем в CSV через сервис
         await _csvService.AppendContactAsync(Name, Email, Topic, Message);
         
         TempData["ContactSuccess"] = "Your message has been sent! We'll hop back to you soon.";
-        return RedirectToPage(); // очищаем форму после успешной отправки
+        return RedirectToPage();
     }
 }
 
-// Пользовательский атрибут валидации для домена .edu
 public class EduEmailAttribute : ValidationAttribute
 {
     protected override ValidationResult IsValid(object value, ValidationContext validationContext)
